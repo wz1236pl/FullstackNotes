@@ -23,12 +23,12 @@ public class AuthenticationService {
         if(appUserRepo.findByEmail(request.getEmail()).isPresent()){
              return AuthenticationResponse.builder().token(null).build();
         }
-        var carOwner = AppUser.builder()
+        var appUser = AppUser.builder()
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .build();
-            appUserRepo.save(carOwner);
-            var jwtToken = jwtService.generateToken(carOwner);
+            appUserRepo.save(appUser);
+            var jwtToken = jwtService.generateToken(appUser);
             return AuthenticationResponse.builder().token(jwtToken).build();
     }
 

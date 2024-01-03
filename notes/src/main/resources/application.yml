@@ -3,7 +3,7 @@ server:
 
 spring:
     datasource:
-        url: jdbc:postgresql://localhost:5432/cars
+        url: jdbc:postgresql://localhost:5432/notes
         driverClassName: org.postgresql.Driver
         username: postgres
         password: student
@@ -12,3 +12,4 @@ spring:
         hibernate:
             ddl-auto: update
             dialect: org.hibernate.dialect.PostgreSQLDialect
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
