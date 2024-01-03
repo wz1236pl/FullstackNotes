@@ -9,37 +9,38 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=student
-      - POSTGRES_DB=cars
+      - POSTGRES_DB=notes
     volumes:
-      - //c/workspace/datarsbp:/var/lib/postgresql/data
+      - //c/workspace/datarsbp:/var/lib/postgresql/notes
+      - ./create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
     stdin_open: true
     tty: true
     ports:
       - '5433:5432'
 
 
-  mybackend:
-    container_name: mybackend
+  notesbe:
+    container_name: notesbe
     build:
-      context: ./car-history
+      context: ./notes
       dockerfile: ./Dockerfile
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://psql-db:5432/cars
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://psql-db:5432/notes
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=student
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
   
-  myfrontend:
-    container_name: myfrontend
+  notesfe:
+    container_name: notesfe
     build:
-      context: ./car-app
+      context: ./notes-fe
       dockerfile: ./Dockerfile
     ports:
       - "3000:3000"    
     depends_on:
-       - mybackend
+       - notesbe
 
 
