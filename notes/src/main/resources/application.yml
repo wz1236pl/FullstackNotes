@@ -1,0 +1,14 @@
+server:
+    port: 8080
+
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/cars
+        driverClassName: org.postgresql.Driver
+        username: postgres
+        password: student
+    jpa:
+        generate-ddl: true
+        hibernate:
+            ddl-auto: update
+            dialect: org.hibernate.dialect.PostgreSQLDialect
