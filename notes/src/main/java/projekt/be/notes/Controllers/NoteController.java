@@ -1,6 +1,7 @@
 package projekt.be.notes.Controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +13,9 @@ import projekt.be.notes.repos.NoteRepo;
 import java.time.OffsetDateTime;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @RestController
 public class NoteController {
     @Autowired
